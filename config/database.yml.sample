@@ -1,0 +1,28 @@
+# 本ファイルをコピーして、ファイル名の「.sample」を消してください
+# そのあと、自分のmysqlの環境に合わせて書き換えてください。
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  host: localhost
+  charset: utf8
+  collation: utf8_general_ci
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: yellow_tail_development
+
+test:
+  <<: *default
+  database: yellow_tail_test
+
+production:
+  <<: *default
+  database: yellow_tail_production
+  username: yellow_tail
+  password: <%= ENV['YELLOW_TAIL_DATABASE_PASSWORD'] %>
